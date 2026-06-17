@@ -1,0 +1,30 @@
+Year
+Number of Doors
+Mileage_numeric
+Fiscal_Power_numeric
+car_age
+mileage_per_year
+Brand
+Condition
+Gearbox
+Fuel
+Origin
+First Owner
+Location_grouped
+Model_grouped
+has_ABS
+has_Air_Conditioning
+has_Airbags
+has_Alloy_Wheels
+has_CD_MP3_Bluetooth
+has_Central_Locking
+has_Cruise_Control
+has_ESP
+has_Electric_Windows
+has_Leather_Seats
+has_Navigation_System_GPS
+has_Onboard_Computer
+has_Parking_Sensors
+has_Rear_Camera
+has_Speed_Limiter
+has_Sunroof
