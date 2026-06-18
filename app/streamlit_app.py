@@ -5,7 +5,8 @@ import pandas as pd
 
 st.set_page_config(page_title="MUCars Pricing Engine", page_icon="🚗", layout="wide")
 
-API_URL = "http://127.0.0.1:8000"  # will change to the live Render URL once deployed
+API_URL = "http://localhost:8000"
+
 
 st.title("🚗 MUCars — Moteur d'Intelligence Tarifaire")
 st.caption("Estimation de prix pour le marché marocain des voitures d'occasion, basée sur 75 000+ annonces réelles (MUCars-2024)")
