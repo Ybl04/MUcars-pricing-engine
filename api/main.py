@@ -3,13 +3,13 @@ from pydantic import BaseModel
 import joblib
 import numpy as np
 import pandas as pd
+import shap
 
 app = FastAPI(title="MUCars Pricing Intelligence Engine")
 
-# Load everything once at startup, not per-request — loading a model from disk
+# Load everything once at startup, not per-request ; loading a model from disk
 # on every API call would be slow and pointless since the model never changes between requests
 pipeline = joblib.load("../src/model.pkl")
-import shap
 lgbm_model = pipeline.named_steps['model']
 explainer = shap.TreeExplainer(lgbm_model)
 
