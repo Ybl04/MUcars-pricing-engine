@@ -11,19 +11,67 @@ API_URL = "http://localhost:8000"
 st.title("🚗 MUCars — Moteur d'Intelligence Tarifaire")
 st.caption("Estimation de prix pour le marché marocain des voitures d'occasion, basée sur 75 000+ annonces réelles (MUCars-2024)")
 
-BRANDS = ['Alfa Romeo', 'Audi', 'BMW', 'BYD', 'Bentley', 'Cadillac', 'Chery', 'Chevrolet',
-          'Chrysler', 'Citroen', 'Cupra', 'DS', 'Dacia', 'Daewoo', 'Daihatsu', 'Dodge', 'Fiat',
-          'Ford', 'GMC', 'Geely', 'Honda', 'Hummer', 'Hyundai', 'Infiniti', 'Isuzu', 'Iveco',
-          'Jaguar', 'Jeep', 'Kia', 'Land Rover', 'Lexus', 'Maserati', 'Mazda', 'Mercedes-Benz',
-          'Mitsubishi', 'Nissan', 'Opel', 'Peugeot', 'Porsche', 'Renault', 'Rover', 'Seat',
-          'Skoda', 'Smart', 'Ssangyong', 'Subaru', 'Suzuki', 'Tesla', 'Toyota', 'Volkswagen',
-          'Volvo', 'mini', 'Autres']
+# Replace BRANDS and MODELS with this mapping
+BRAND_MODELS = {
+    "Alfa Romeo": ["Other"],
+    "Audi": ["Other"],
+    "Autres": ["Other"],
+    "BMW": ["Other"],
+    "BYD": ["Other"],
+    "Bentley": ["Other"],
+    "Cadillac": ["Other"],
+    "Chery": ["Other"],
+    "Chevrolet": ["Other"],
+    "Chrysler": ["Other"],
+    "Citroen": ["Berlingo", "C3", "Other"],
+    "Cupra": ["Other"],
+    "DFSK": ["Other"],
+    "DS": ["Other"],
+    "Dacia": ["Dokker", "Duster", "Logan", "Sandero", "Sandero Stepway", "Other"],
+    "Daewoo": ["Other"],
+    "Daihatsu": ["Other"],
+    "Dodge": ["Other"],
+    "Fiat": ["500", "Palio", "Punto", "Uno", "Other"],
+    "Ford": ["Fiesta", "Focus", "Kuga", "Other"],
+    "GMC": ["Other"],
+    "Geely": ["Other"],
+    "Honda": ["Other"],
+    "Hyundai": ["Accent", "Santa Fe", "Tucson", "Other"],
+    "Infiniti": ["Other"],
+    "Isuzu": ["Other"],
+    "Iveco": ["Other"],
+    "Jaguar": ["Other"],
+    "Jeep": ["Other"],
+    "Kia": ["Picanto", "Other"],
+    "Land Rover": ["Range Rover Evoque", "Other"],
+    "Lexus": ["Other"],
+    "Mahindra": ["Other"],
+    "Maserati": ["Other"],
+    "Mazda": ["Other"],
+    "Mercedes-Benz": ["190", "220", "Classe C", "Other"],
+    "Mitsubishi": ["Other"],
+    "Nissan": ["Qashqai", "Other"],
+    "Opel": ["Astra", "Other"],
+    "Peugeot": ["206", "208", "308", "Partner", "Other"],
+    "Porsche": ["Other"],
+    "Renault": ["19", "Clio", "Kangoo", "Megane", "Other"],
+    "Rover": ["Other"],
+    "Seat": ["Other"],
+    "Skoda": ["Octavia", "Other"],
+    "Smart": ["Other"],
+    "Ssangyong": ["Other"],
+    "Subaru": ["Other"],
+    "Suzuki": ["Other"],
+    "Tesla": ["Other"],
+    "Toyota": ["Other"],
+    "Volkswagen": ["Caddy", "Golf 4", "Golf 7", "Passat", "Polo", "Tiguan", "Touareg", "Other"],
+    "Volvo": ["Other"],
+    "Zotye": ["Other"],
+    "lancia": ["Other"],
+    "mini": ["Other"],
+}
 
-MODELS = ['19', '190', '206', '208', '220', '308', '500', 'Accent', 'Astra', 'Berlingo', 'C3',
-          'Caddy', 'Classe C', 'Clio', 'Dokker', 'Duster', 'Fiesta', 'Focus', 'Golf 4', 'Golf 7',
-          'Kangoo', 'Kuga', 'Logan', 'Megane', 'Octavia', 'Palio', 'Partner', 'Passat', 'Picanto',
-          'Polo', 'Punto', 'Qashqai', 'Range Rover Evoque', 'Sandero', 'Sandero Stepway',
-          'Santa Fe', 'Tiguan', 'Touareg', 'Tucson', 'Uno', 'Other']
+BRANDS = sorted(BRAND_MODELS.keys())
 
 LOCATIONS = ['Agadir', 'Berrechid', 'Béni Mellal', 'Casablanca', 'El Jadida', 'Fès', 'Khouribga',
              'Kénitra', 'Laâyoune', 'Marrakech', 'Meknès', 'Mohammedia', 'Nador', 'Oujda', 'Rabat',
@@ -33,7 +81,7 @@ with st.sidebar:
     st.header("Caractéristiques du véhicule")
 
     brand = st.selectbox("Marque", BRANDS, index=BRANDS.index('Dacia'))
-    model_grouped = st.selectbox("Modèle", MODELS, index=MODELS.index('Logan'))
+    model_grouped = st.selectbox("Modèle", BRAND_MODELS.get(brand, ['Other']))
     year = st.slider("Année", 1995, 2024, 2019)
     mileage = st.number_input("Kilométrage (km)", min_value=0, max_value=550000, value=85000, step=5000)
     fiscal_power = st.number_input("Puissance fiscale (CV)", min_value=4, max_value=45, value=6)
